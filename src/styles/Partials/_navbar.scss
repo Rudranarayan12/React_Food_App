@@ -1,0 +1,104 @@
+.navbar {
+    height: 55px;
+    box-shadow: 0 3px 6px var(--shadow-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 998;
+    .logo{
+        font-size: 1.5em;
+        font-weight: bolder;
+        color: var(--primary-color);
+        text-shadow: 0 1px 3px var(--shadow-color);
+        span{
+            color: var(--text-color);
+        }
+    }
+    .nav-link{
+        a{
+            margin-left: 1em;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            &::before{
+                content: '';
+                display: inline-block;
+                height: 3px;
+                width: 100%;
+                background-color: var(--primary-color);
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                transform: scale(0);
+                transition: transform 0.9s;
+            }
+            &:hover{
+                &::before{
+                    transform: scale(1);
+                }
+            }
+            &.active{
+                color: var(--primary-color);
+                font-weight: bold;
+            }
+        }
+    }
+    .sidebar-btn{
+        height: 28px;
+        width: 35px;
+        position: relative;
+        display: none;
+        .bar{
+            border-radius: 5px;
+            height: 6px;
+            width: 100%;
+            background-color: var(--text-color);
+            position: absolute;
+            transition: transform .7s;
+            &:nth-child(1){
+                top:0;
+            }
+            &:nth-child(2){
+                top:50%;
+                transform-origin: right;
+                transform:scaleX(.8) translateY(-50%);
+            }
+            &:nth-child(3){
+                top:100%;
+                transform: translateY(-100%);
+            }
+        }
+        &.active{
+            .bar{
+                transform-origin: center;
+                top: 50%;
+                &:nth-child(1){
+                    transform: rotate(45deg) translateY(-50%);
+                }
+                &:nth-child(2){
+                    transform: scaleX(0) translateY(-50%);
+                }
+                &:nth-child(3){
+                    transform: rotate(-45deg) translateY(-50%);
+                }
+            }
+        }
+    }
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    width: 250px;
+    background-color: var(--background-color);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.2),
+                3px 0 5px var(--shadow-color);
+    animation: getAnimationDuration(.5s) slideInLeft;
+}
